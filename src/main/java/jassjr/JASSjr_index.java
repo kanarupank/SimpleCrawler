@@ -5,6 +5,8 @@ package jassjr;/*
   Minimalistic BM25 search engine.
 */
 
+import utility.Utility;
+
 import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
 import java.io.FileOutputStream;
@@ -118,6 +120,12 @@ class JASSjr_index {
         for (String line : (Iterable<String>) stream::iterator) {
             String token;
             for (token = lexGetFirst(line); token != null; token = lexGetNext()) {
+
+                //skip the identified stop word token after the lexical analysis
+                if (Utility.isStopWord(token)) {
+                    continue;
+                }
+
                 if (token.equals("<DOC>")) {
 						/*
 						  Save the previous document length
@@ -265,6 +273,7 @@ class JASSjr_index {
     */
     public static void main(String args[]) {
         try {
+            args = new String[1];
             args[0] = "test_documents.xml";
             JASSjr_index indexer = new JASSjr_index();
             indexer.engage(args);

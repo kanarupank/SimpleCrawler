@@ -12,6 +12,6 @@ public class CrawlerConstants {
     public static final String XML_FILE_PATH = "data/bbc_sport.xml";
     public static final String STORE = "data";
     public static final int POLITENESS_DELAY = 300; //in milli seconds, 200 is the default
-    public static final boolean INCLUDE_HTTPS = false;
+    public static final boolean INCLUDE_HTTPS = true;
 
 }
